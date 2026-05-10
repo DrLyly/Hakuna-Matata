@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hakuna Matata</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --glass:rgba(255,255,255,0.13);
+    --glass-border:rgba(255,255,255,0.14);
+}
+
+body{
+    background:url("https://i.postimg.cc/50QfZ2Kw/fond.jpg") no-repeat center center fixed;
+    background-size:cover;
+
+    height:100vh;
+    overflow:hidden;
+
+    font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+}
+
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.30);
+    z-index:1;
+}
+
+.container{
+    position:relative;
+    z-index:2;
+
+    width:92%;
+    max-width:470px;
+
+    text-align:center;
+}
+
+/* TOP BUTTONS */
+
+.top-buttons{
+    position:absolute;
+    top:-65px;
+    right:0;
+
+    display:flex;
+    gap:10px;
+}
+
+.top-btn{
+    width:42px;
+    height:42px;
+
+    border-radius:14px;
+
+    background:var(--glass);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid var(--glass-border);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.top-btn:active{
+    transform:scale(0.92);
+}
+
+/* TITLE */
+
+h1{
+    font-size:3rem;
+    font-style:italic;
+    font-weight:800;
+
+    margin-bottom:24px;
+
+    text-shadow:0 5px 20px rgba(0,0,0,0.55);
+}
+
+/* SEARCH */
+
+.search-bar{
+    background:rgba(255,255,255,0.97);
+
+    border-radius:50px;
+
+    padding:15px 22px;
+
+    display:flex;
+
+    box-shadow:0 15px 35px rgba(0,0,0,0.30);
+
+    margin-bottom:34px;
+}
+
+.search-bar input{
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    background:transparent;
+
+    font-size:1.05rem;
+}
+
+/* GRID */
+
+.shortcuts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+/* SIMPLE CARD */
+
+.shortcut-card{
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    border-radius:24px;
+
+    min-height:110px;
+
+    text-decoration:none;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    transition:0.2s;
+}
+
+.shortcut-card:active{
+    transform:scale(0.93);
+    background:rgba(255,255,255,0.22);
+}
+
+.icon{
+    width:46px;
+    height:46px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,0.92);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:10px;
+
+    font-size:22px;
+}
+
+.shortcut-card span{
+    font-size:0.82rem;
+    font-weight:700;
+
+    letter-spacing:0.4px;
+}
+
+/* DOUBLE CARD */
+
+.double-card{
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+
+    min-height:110px;
+}
+
+.double-link{
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:6px;
+
+    text-align:center;
+
+    text-decoration:none;
+    color:white;
+
+    transition:0.2s;
+
+    padding:8px 0;
+}
+
+.double-link:active{
+    background:rgba(255,255,255,0.18);
+}
+
+.double-link:first-child{
+    border-bottom:1px solid rgba(255,255,255,0.12);
+}
+
+.double-icon{
+    width:36px;
+    height:36px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,0.92);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:18px;
+
+    flex-shrink:0;
+}
+
+.double-link span{
+    font-size:0.72rem;
+    font-weight:700;
+}
+
+/* RESPONSIVE */
+
+@media (max-height:700px){
+
+    h1{
+        font-size:2.5rem;
+        margin-bottom:18px;
+    }
+
+    .search-bar{
+        margin-bottom:24px;
+    }
+
+    .shortcut-card,
+    .double-card{
+        min-height:95px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+    <!-- TOP BUTTONS -->
+
+    <div class="top-buttons">
+
+        <div class="top-btn" onclick="changeBackground()">
+            ⚙️
+        </div>
+
+        <div class="top-btn" onclick="addFavorite()">
+            ➕
+        </div>
+
+    </div>
+
+    <h1>Hakuna Matata</h1>
+
+    <!-- SEARCH -->
+
+    <form class="search-bar"
+          action="https://www.google.com/search"
+          method="GET">
+
+        <input type="text"
+               name="q"
+               placeholder="Rechercher sur Google..."
+               autocomplete="off">
+
+    </form>
+
+    <!-- FAVORITES -->
+
+    <div class="shortcuts">
+
+        <!-- NEWS -->
+
+        <div class="double-card">
+
+            <a href="https://www.20minutes.fr"
+               class="double-link">
+
+                <div class="double-icon">📰</div>
+                <span>20MIN</span>
+
+            </a>
+
+            <a href="https://www.huffingtonpost.fr/"
+               class="double-link">
+
+                <div class="double-icon">🟩</div>
+                <span>HUFFPOST</span>
+
+            </a>
+
+        </div>
+
+        <!-- FACEBOOK -->
+
+        <a href="https://www.facebook.com"
+           class="shortcut-card">
+
+            <div class="icon">📘</div>
+            <span>FACEBOOK</span>
+
+        </a>
+
+        <!-- YOUTUBE -->
+
+        <a href="https://m.youtube.com"
+           class="shortcut-card">
+
+            <div class="icon">▶️</div>
+            <span>YOUTUBE</span>
+
+        </a>
+
+        <!-- ANREA -->
+
+        <a href="https://sfar.org/espace-professionel-anesthesiste-reanimateur/mes-revues/anesthesie-reanimation-anrea/"
+           class="shortcut-card">
+
+            <div class="icon">🩺</div>
+            <span>ANREA</span>
+
+        </a>
+
+        <!-- 9GAG -->
+
+        <a href="https://9gag.com/trending"
+           class="shortcut-card">
+
+            <div class="icon">😂</div>
+            <span>9GAG</span>
+
+        </a>
+
+        <!-- WEATHER -->
+
+        <div class="double-card">
+
+            <a href="https://marine.meteoconsult.fr/meteo-marine/bulletin-detaille/port-29/previsions-meteo-nice-aujourdhui"
+               class="double-link">
+
+                <div class="double-icon">🌤️</div>
+                <span>MARINE</span>
+
+            </a>
+
+            <a href="https://www.meteoblue.com/fr/meteo/semaine/nice_france_2990440"
+               class="double-link">
+
+                <div class="double-icon">☁️</div>
+                <span>METEOBLUE</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* CHANGE BACKGROUND */
+
+function changeBackground(){
+
+    const url = prompt("Nouvelle image de fond (URL) :");
+
+    if(url){
+
+        document.body.style.background =
+        `url('${url}') no-repeat center center fixed`;
+
+        document.body.style.backgroundSize = "cover";
+
+        localStorage.setItem("customBackground", url);
+    }
+}
+
+/* LOAD SAVED BACKGROUND */
+
+const savedBg = localStorage.getItem("customBackground");
+
+if(savedBg){
+
+    document.body.style.background =
+    `url('${savedBg}') no-repeat center center fixed`;
+
+    document.body.style.backgroundSize = "cover";
+}
+
+/* ADD FAVORITE */
+
+function addFavorite(){
+
+    const name = prompt("Nom du favori :");
+    const link = prompt("Lien du favori :");
+
+    if(name && link){
+
+        const container =
+        document.querySelector(".shortcuts");
+
+        const card = document.createElement("a");
+
+        card.href = link;
+
+        card.className = "shortcut-card";
+
+        card.innerHTML = `
+            <div class="icon">⭐</div>
+            <span>${name}</span>
+        `;
+
+        container.appendChild(card);
+    }
+}
+
+</script>
+
+</body>
+</html>
