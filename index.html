@@ -30,8 +30,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Descend légèrement l'ensemble du contenu */
-            padding-top: 40px; 
+            padding-top: 20px; 
         }
 
         h1 { 
@@ -40,7 +39,6 @@
             font-weight: 900; 
             text-shadow: 0 5px 25px rgba(0,0,0,0.6); 
             margin-bottom: 10px;
-            letter-spacing: -1px;
         }
 
         .search-bar {
@@ -49,7 +47,7 @@
             padding: 12px 20px;
             display: flex;
             width: 100%;
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         }
         .search-bar input { width: 100%; border: none; outline: none; background: transparent; font-size: 1rem; color: #000; }
@@ -57,58 +55,53 @@
         .shortcuts { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
+            gap: 25px; 
             width: 100%;
+            align-items: start;
         }
 
-        .shortcut-card, .double-card {
+        /* TAILLE RÉDUITE À 35PX */
+        .logo-link {
+            width: 35px; 
+            height: 35px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
             text-decoration: none;
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
+            transition: transform 0.2s;
+            opacity: 0.95;
+        }
+
+        .logo-link:active { transform: scale(0.9); }
+        .logo-link img { width: 100%; height: 100%; object-fit: contain; }
+
+        .col {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            transition: transform 0.2s;
-            opacity: 0.9;
+            gap: 25px; 
         }
 
-        .shortcut-card:active, .double-link:active { transform: scale(0.9); }
-
-        /* Taille des logos réduite */
-        .icon {
-            width: 45px; height: 45px; 
-            display: flex; align-items: center; justify-content: center;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4));
-        }
-        .icon img, .double-img { width: 100%; height: 100%; object-fit: contain; }
-
-        .double-card { gap: 20px; }
-        .double-link { 
-            width: 32px; height: 32px; 
-            display: flex; align-items: center; justify-content: center;
-            filter: drop-shadow(0 4px 5px rgba(0,0,0,0.4));
-        }
-
-        /* MÉTÉO - Abaissée par rapport aux favoris */
+        /* MÉTÉO TOUJOURS BIEN EN BAS */
         .weather-widget {
             display: flex;
             justify-content: center;
-            gap: 50px;
-            margin-top: 70px; /* Espace important pour l'effet "Dock" en bas */
+            gap: 60px;
+            margin-top: 100px;
             width: 100%;
         }
         .weather-item {
             text-decoration: none;
             opacity: 0.8;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-            transition: 0.3s;
         }
         .weather-emoji { font-size: 28px; }
 
         @media (max-height: 700px) {
             h1 { font-size: 2.4rem; }
             .shortcuts { gap: 20px; }
-            .container { padding-top: 20px; }
-            .weather-widget { margin-top: 50px; }
+            .weather-widget { margin-top: 70px; }
         }
     </style>
 </head>
@@ -124,43 +117,43 @@
     </form>
 
     <div class="shortcuts">
-        <div class="double-card">
-            <a href="https://www.20minutes.fr" class="double-link">
-                <img src="https://www.google.com/s2/favicons?sz=128&domain=20minutes.fr" class="double-img">
+        <div class="col">
+            <a href="https://www.20minutes.fr" class="logo-link">
+                <img src="https://www.google.com/s2/favicons?sz=128&domain=20minutes.fr">
             </a>
-            <a href="https://www.huffingtonpost.fr" class="double-link">
-                <img src="https://www.google.com/s2/favicons?sz=128&domain=huffingtonpost.fr" class="double-img">
-            </a>
-        </div>
-
-        <div class="double-card">
-            <a href="https://www.facebook.com" class="double-link">
-                <img src="https://www.google.com/s2/favicons?sz=128&domain=facebook.com" class="double-img">
-            </a>
-            <a href="https://9gag.com" class="double-link">
-                <img src="https://www.google.com/s2/favicons?sz=128&domain=9gag.com" class="double-img">
+            <a href="https://www.huffingtonpost.fr" class="logo-link">
+                <img src="https://www.google.com/s2/favicons?sz=128&domain=huffingtonpost.fr">
             </a>
         </div>
 
-        <div class="double-card">
-            <a href="https://www.ovhcloud.com/fr/mail/" class="double-link">
-                <img src="https://www.google.com/s2/favicons?sz=128&domain=ovh.com" class="double-img">
+        <div class="col">
+            <a href="https://www.facebook.com" class="logo-link">
+                <img src="https://www.google.com/s2/favicons?sz=128&domain=facebook.com">
             </a>
-            <a href="https://www.doctolib.fr" class="double-link">
-                <img src="https://www.google.com/s2/favicons?sz=128&domain=doctolib.fr" class="double-img">
+            <a href="https://9gag.com" class="logo-link">
+                <img src="https://www.google.com/s2/favicons?sz=128&domain=9gag.com">
             </a>
         </div>
 
-        <a href="https://m.youtube.com" class="shortcut-card">
-            <div class="icon"><img src="https://www.google.com/s2/favicons?sz=128&domain=youtube.com"></div>
+        <div class="col">
+            <a href="https://www.ovhcloud.com/fr/mail/" class="logo-link">
+                <img src="https://www.google.com/s2/favicons?sz=128&domain=ovh.com">
+            </a>
+            <a href="https://www.doctolib.fr" class="logo-link">
+                <img src="https://www.google.com/s2/favicons?sz=128&domain=doctolib.fr">
+            </a>
+        </div>
+
+        <a href="https://m.youtube.com" class="logo-link" style="margin: 0 auto;">
+            <img src="https://www.google.com/s2/favicons?sz=128&domain=youtube.com">
         </a>
 
-        <a href="https://sfar.org" class="shortcut-card">
-            <div class="icon"><img src="https://www.google.com/s2/favicons?sz=128&domain=sfar.org"></div>
+        <a href="https://sfar.org" class="logo-link" style="margin: 0 auto;">
+            <img src="https://www.google.com/s2/favicons?sz=128&domain=sfar.org">
         </a>
 
-        <a href="https://www.amazon.fr" class="shortcut-card">
-            <div class="icon"><img src="https://www.google.com/s2/favicons?sz=128&domain=amazon.fr"></div>
+        <a href="https://www.amazon.fr" class="logo-link" style="margin: 0 auto;">
+            <img src="https://www.google.com/s2/favicons?sz=128&domain=amazon.fr">
         </a>
     </div>
 
