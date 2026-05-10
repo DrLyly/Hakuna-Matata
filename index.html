@@ -25,17 +25,17 @@
             position: relative; 
             z-index: 2; 
             width: 90%; 
-            max-width: 400px; 
+            max-width: 360px; 
             text-align: center;
             display: flex;
             flex-direction: column;
             height: 100vh;
-            justify-content: center; 
-            gap: 30px;
+            justify-content: space-between; /* Espace optimisé entre haut et bas */
+            padding: 60px 0 20px 0; /* Marges haut/bas */
         }
 
         h1 { 
-            font-size: 2.8rem; 
+            font-size: 2.5rem; 
             font-style: italic; 
             font-weight: 900; 
             text-shadow: 0 4px 15px rgba(0,0,0,0.6);
@@ -45,67 +45,55 @@
         .search-bar {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 50px;
-            padding: 12px 20px;
+            padding: 10px 20px;
             display: flex;
-            margin: 0 auto 10px auto;
-            width: 90%;
+            margin: 0 auto 40px auto;
+            width: 85%;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
-        .search-bar input { width: 100%; border: none; outline: none; background: transparent; font-size: 1rem; color: #000; text-align: center; }
+        .search-bar input { width: 100%; border: none; outline: none; background: transparent; font-size: 0.9rem; color: #000; text-align: center; }
 
-        /* GRILLE D'ICÔNES FLOTTANTES */
+        /* GRILLE D'ICÔNES FLOTTANTES ÉPURÉES */
         .shortcuts { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 25px 15px; 
-            padding: 10px;
+            gap: 40px 10px; /* Plus d'espace vertical entre les icônes */
+            margin-bottom: auto; /* Pousse la météo vers le bas */
         }
 
         .icon-item {
             text-decoration: none;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            transition: transform 0.2s;
+            align-items: center;
+            transition: 0.2s;
+            /* Transparence globale de l'icône */
+            opacity: 0.7; 
         }
 
-        .icon-item:active { transform: scale(0.9); }
+        .icon-item:active { transform: scale(0.85); opacity: 1; }
 
-        /* Cercle de fond très discret pour détacher le logo si besoin */
         .icon-circle {
-            width: 55px;
-            height: 55px;
+            width: 45px; /* Plus petit */
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5)); /* Ombre pour la lisibilité */
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));
         }
 
         .icon-circle img {
-            width: 40px;
-            height: 40px;
+            width: 32px; /* Plus petit */
+            height: 32px;
             object-fit: contain;
         }
 
-        /* Label discret sous les icônes (optionnel, j'ai réduit l'opacité) */
-        .icon-label {
-            font-size: 0.6rem;
-            font-weight: 800;
-            margin-top: 6px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            opacity: 0.9;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-
-        /* MÉTÉO STYLE WIDGET BAS */
+        /* MÉTÉO TOUT EN BAS */
         .weather-widget {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            margin-top: 20px;
-            margin-bottom: 10px; /* Redescendu pour être proche du bord mais pas trop */
+            gap: 50px;
+            padding-bottom: 5px; /* Très proche du bord */
         }
         .weather-item {
             text-decoration: none;
@@ -113,16 +101,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 0.8;
+            opacity: 0.6; /* Plus discret */
             transition: 0.3s;
         }
-        .weather-emoji { font-size: 26px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
-        .weather-label { font-size: 0.55rem; font-weight: 900; letter-spacing: 1.5px; margin-top: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .weather-emoji { font-size: 22px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+        .weather-label { font-size: 0.5rem; font-weight: 900; letter-spacing: 1.5px; margin-top: 4px; }
 
         @media (max-height: 650px) {
-            h1 { font-size: 2.2rem; }
-            .icon-circle { width: 45px; height: 45px; }
-            .icon-circle img { width: 32px; height: 32px; }
+            h1 { font-size: 2rem; }
+            .shortcuts { gap: 25px 10px; }
+            .icon-circle { width: 40px; height: 40px; }
+            .icon-circle img { width: 28px; height: 28px; }
         }
     </style>
 </head>
@@ -142,41 +131,32 @@
         <div class="shortcuts">
             <a href="https://www.20minutes.fr" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=20minutes.fr"></div>
-                <span class="icon-label">20Min</span>
             </a>
             <a href="https://www.facebook.com" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=facebook.com"></div>
-                <span class="icon-label">Facebook</span>
             </a>
             <a href="https://www.ovhcloud.com/fr/mail/" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=ovh.com"></div>
-                <span class="icon-label">Mail</span>
             </a>
 
             <a href="https://www.huffingtonpost.fr" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=huffingtonpost.fr"></div>
-                <span class="icon-label">Huff</span>
             </a>
             <a href="https://9gag.com" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=9gag.com"></div>
-                <span class="icon-label">9GAG</span>
             </a>
             <a href="https://www.doctolib.fr" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=doctolib.fr"></div>
-                <span class="icon-label">Doctolib</span>
             </a>
 
             <a href="https://m.youtube.com" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=youtube.com"></div>
-                <span class="icon-label">YouTube</span>
             </a>
             <a href="https://sfar.org" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=sfar.org"></div>
-                <span class="icon-label">ANREA</span>
             </a>
             <a href="https://www.amazon.fr" class="icon-item">
                 <div class="icon-circle"><img src="https://www.google.com/s2/favicons?sz=128&domain=amazon.fr"></div>
-                <span class="icon-label">Amazon</span>
             </a>
         </div>
     </div>
