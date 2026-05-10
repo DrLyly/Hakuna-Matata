@@ -8,7 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         :root {
-            --glass: rgba(255, 255, 255, 0.04); 
+            --glass: rgba(255, 255, 255, 0.05); 
             --glass-border: rgba(255, 255, 255, 0.12);
             --icon-bg: rgba(255, 255, 255, 0.06);
         }
@@ -30,44 +30,50 @@
         .container { 
             position: relative; 
             z-index: 2; 
-            width: 92%; 
-            max-width: 420px; 
+            width: 90%; 
+            max-width: 380px; /* Un peu plus étroit pour le centrage */
             text-align: center;
             display: flex;
             flex-direction: column;
-            height: 85vh; /* Pour gérer l'espace vertical */
-            justify-content: space-between;
+            height: 100vh;
+            justify-content: center; /* Centre tout le bloc verticalement */
+            gap: 20px;
         }
 
-        h1 { font-size: 3rem; font-style: italic; font-weight: 900; text-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+        h1 { 
+            font-size: 2.8rem; 
+            font-style: italic; 
+            font-weight: 900; 
+            text-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+        }
 
         .search-bar {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 50px;
-            padding: 14px 22px;
+            padding: 12px 20px;
             display: flex;
-            margin: 25px 0 35px 0;
+            margin-bottom: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-        .search-bar input { width: 100%; border: none; outline: none; background: transparent; font-size: 1rem; color: #000; font-weight: 500; }
+        .search-bar input { width: 100%; border: none; outline: none; background: transparent; font-size: 0.95rem; color: #000; text-align: center; }
 
         .shortcuts { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 12px; 
-            margin-bottom: auto;
+            gap: 15px; 
         }
 
-        /* Cartes Classiques */
+        /* Cartes plus petites et carrées */
         .shortcut-card, .double-card {
             background: var(--glass);
             border: 1px solid var(--glass-border);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 22px;
-            min-height: 105px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            aspect-ratio: 1 / 1; /* Carré parfait */
+            min-height: auto;
             text-decoration: none;
-            color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -75,40 +81,33 @@
             transition: 0.2s;
         }
 
-        .shortcut-card:active { transform: scale(0.95); background: rgba(255,255,255,0.1); }
+        .shortcut-card:active { transform: scale(0.92); background: rgba(255,255,255,0.1); }
 
         .icon {
-            width: 42px; height: 42px;
-            border-radius: 50%;
-            background: var(--icon-bg);
-            margin-bottom: 8px;
+            width: 45px; 
+            height: 45px;
             display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            padding: 8px;
         }
-        .icon img { width: 100%; height: 100%; object-fit: contain; }
+        .icon img { width: 32px; height: 32px; object-fit: contain; }
 
-        span { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-
-        /* Double boutons */
+        /* Double boutons sans texte */
         .double-card { padding: 0; overflow: hidden; }
         .double-link {
             flex: 1; width: 100%;
             display: flex; align-items: center; justify-content: center;
-            gap: 8px; text-decoration: none; color: white;
-            font-size: 0.65rem; font-weight: 800;
+            text-decoration: none; color: white;
         }
         .double-link:first-child { border-bottom: 1px solid var(--glass-border); }
-        .double-img { width: 18px; height: 18px; object-fit: contain; }
+        .double-img { width: 22px; height: 22px; object-fit: contain; }
 
-        /* MÉTÉO STYLE WIDGET (Bas de page) */
+        /* MÉTÉO REMONTÉE */
         .weather-widget {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            padding: 20px;
-            background: transparent; /* Totalement transparent */
-            margin-top: 20px;
+            gap: 50px;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px; /* Espace pour ne pas toucher le bas du navigateur */
         }
         .weather-item {
             text-decoration: none;
@@ -116,17 +115,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
-            opacity: 0.8;
+            opacity: 0.7;
             transition: 0.3s;
         }
-        .weather-item:active { opacity: 1; transform: translateY(-2px); }
-        .weather-emoji { font-size: 24px; }
-        .weather-label { font-size: 0.6rem; font-weight: 900; letter-spacing: 1.5px; }
+        .weather-emoji { font-size: 22px; margin-bottom: 4px; }
+        .weather-label { font-size: 0.55rem; font-weight: 900; letter-spacing: 1px; }
 
-        @media (max-height: 650px) {
+        @media (max-height: 700px) {
+            .container { gap: 10px; }
             h1 { font-size: 2.2rem; }
-            .shortcut-card, .double-card { min-height: 90px; }
+            .icon img { width: 28px; height: 28px; }
         }
     </style>
 </head>
@@ -135,60 +133,52 @@
 <div class="overlay"></div>
 
 <div class="container">
-    <div>
+    
+    <div class="main-content">
         <h1>Hakuna Matata</h1>
 
         <form class="search-bar" action="https://www.google.com/search" method="GET">
-            <input type="text" name="q" placeholder="Rechercher sur Google..." autocomplete="off">
+            <input type="text" name="q" placeholder="Rechercher..." autocomplete="off">
         </form>
 
         <div class="shortcuts">
             <div class="double-card">
                 <a href="https://www.20minutes.fr" class="double-link">
                     <img src="https://www.google.com/s2/favicons?sz=64&domain=20minutes.fr" class="double-img">
-                    <span>20MIN</span>
                 </a>
                 <a href="https://www.huffingtonpost.fr" class="double-link">
                     <img src="https://www.google.com/s2/favicons?sz=64&domain=huffingtonpost.fr" class="double-img">
-                    <span>HUFF</span>
                 </a>
             </div>
 
             <div class="double-card">
                 <a href="https://www.facebook.com" class="double-link">
                     <img src="https://www.google.com/s2/favicons?sz=64&domain=facebook.com" class="double-img">
-                    <span>FB</span>
                 </a>
                 <a href="https://9gag.com" class="double-link">
                     <img src="https://www.google.com/s2/favicons?sz=64&domain=9gag.com" class="double-img">
-                    <span>9GAG</span>
                 </a>
             </div>
 
             <div class="double-card">
                 <a href="https://www.ovhcloud.com/fr/mail/" class="double-link">
                     <img src="https://www.google.com/s2/favicons?sz=64&domain=ovh.com" class="double-img">
-                    <span>MAIL</span>
                 </a>
                 <a href="https://www.doctolib.fr" class="double-link">
                     <img src="https://www.google.com/s2/favicons?sz=64&domain=doctolib.fr" class="double-img">
-                    <span>DOC</span>
                 </a>
             </div>
 
             <a href="https://m.youtube.com" class="shortcut-card">
                 <div class="icon"><img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com"></div>
-                <span>YouTube</span>
             </a>
 
             <a href="https://sfar.org" class="shortcut-card">
                 <div class="icon"><img src="https://www.google.com/s2/favicons?sz=64&domain=sfar.org"></div>
-                <span>ANREA</span>
             </a>
 
             <a href="https://www.amazon.fr" class="shortcut-card">
                 <div class="icon"><img src="https://www.google.com/s2/favicons?sz=64&domain=amazon.fr"></div>
-                <span>Amazon</span>
             </a>
         </div>
     </div>
@@ -203,6 +193,7 @@
             <div class="weather-label">BLUE</div>
         </a>
     </div>
+
 </div>
 
 </body>
